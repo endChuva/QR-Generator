@@ -49,5 +49,5 @@ if __name__ == "__main__":
         gerar_qrcode(texto, nome_arquivo) 
 
         continuar = input(colored("        Do you want to generate another QR Code? (y/n): ", "light_blue"))
-        if continuar.lower() != 's':
+        if continuar.lower() != 'y':
             break
