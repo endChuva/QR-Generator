@@ -1,3 +1,4 @@
+![QR Generator](img.png)
 # QR Code Generator
 
 Welcome to the **QR Code Generator** project! This Python-based application allows you to generate QR codes from any text or URL and save them as PNG images. It's a simple yet powerful tool for creating QR codes quickly and efficiently.
