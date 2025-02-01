@@ -7,7 +7,7 @@ Welcome to the **QR Code Generator** project! This Python-based application allo
 
 ## Features
 
-- **Generate QR Codes**: Convert any text or URL into a QR code.
+- **Generate QR Codes**: Convert any text, URL or Wifi-Networks into a QR code.
 - **Custom File Naming**: Save QR codes with a custom file name.
 - **Automatic Folder Creation**: QR codes are saved in a dedicated folder named `QRcodes`.
 - **User-Friendly Interface**: Clear terminal interface with colored output for better readability.
