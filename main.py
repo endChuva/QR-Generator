@@ -41,12 +41,46 @@ def gerar_qrcode(texto, nome_arquivo):
     img.save(caminho_arquivo)
     print(colored(f"        QR Code salvo em {caminho_arquivo}", "light_green"))
 
+def gerar_qrcode_wifi(ssid, senha, tipo_seguranca="WPA", nome_arquivo="wifi_qrcode.png"):
+    criar_pasta_qrcodes()
+    wifi_config = f"WIFI:S:{ssid};T:{tipo_seguranca};P:{senha};;"
+
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(wifi_config)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="darkblue", back_color="white")
+
+    caminho_arquivo = os.path.join("QRcodes", nome_arquivo + ".png")
+    img.save(caminho_arquivo)
+    print(colored(f"        QR Code de Wi-Fi salvo em {caminho_arquivo}", "light_green"))
+
 if __name__ == "__main__":
     while True:
-        start_code() 
-        texto = input("        Enter the text or URL to generate the QR Code: ")
-        nome_arquivo = input("        Enter the output file name: ")
-        gerar_qrcode(texto, nome_arquivo) 
+        start_code()
+
+        print(colored("        Escolha uma opção:", "light_blue"))
+        print(colored("        1 - Gerar QR Code normal", "light_blue"))
+        print(colored("        2 - Gerar QR Code de Wi-Fi", "light_blue"))
+        escolha = input("        Digite o número da opção desejada: ")
+
+        if escolha == "1":
+            texto = input("        Enter the text or URL to generate the QR Code: ")
+            nome_arquivo = input("        Enter the output file name: ")
+            gerar_qrcode(texto, nome_arquivo)
+        elif escolha == "2":
+            ssid = input("        Digite o nome da rede Wi-Fi (SSID): ")
+            senha = input("        Digite a senha da rede Wi-Fi: ")
+            tipo_seguranca = input("        Digite o tipo de segurança (WPA, WEP, ou nopass): ")
+            nome_arquivo = input("        Digite o nome do arquivo de saída (ex: wifi_qrcode.png): ")
+            gerar_qrcode_wifi(ssid, senha, tipo_seguranca, nome_arquivo)
+        else:
+            print(colored("        Opção inválida! Tente novamente.", "light_red"))
 
         continuar = input(colored("        Do you want to generate another QR Code? (y/n): ", "light_blue"))
         if continuar.lower() != 'y':
